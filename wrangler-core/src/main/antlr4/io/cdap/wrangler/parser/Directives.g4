@@ -311,3 +311,18 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
+
+// Byte size and time duration argument parser rules
+byteSizeArg : BYTE_SIZE ;
+timeDurationArg : TIME_DURATION ;
+
+// Lexer rules to match byte size and time duration values
+BYTE_SIZE: DIGIT+ ('.' DIGIT+)? BYTE_UNIT;
+TIME_DURATION: DIGIT+ ('.' DIGIT+)? TIME_UNIT;
+
+// Helper fragments for byte and time units
+fragment BYTE_UNIT: [KkMmGg][Bb];        // KB, MB, GB
+fragment TIME_UNIT: [mMsS];              // ms, s
+
+// Helper for numbers
+fragment DIGIT: [0-9];
